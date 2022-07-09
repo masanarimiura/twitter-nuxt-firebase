@@ -1,0 +1,24 @@
+<template>
+  <div class="comment">
+    <SideBar></SideBar>
+    <div class="comment__ttl">
+      <h2>コメント</h2>
+      <TweetContent></TweetContent>
+      <TopBar></TopBar>
+    </div>
+  </div>
+</template>
+
+<style>
+.comment {
+  display: flex;
+  width: 100vw
+}
+.comment__ttl {
+  width: 100%;
+}
+h2 {
+  padding: 20px;
+  border: solid 1px #fff;
+}
+</style>

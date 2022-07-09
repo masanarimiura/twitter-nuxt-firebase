@@ -1,0 +1,22 @@
+<template>
+  <div>
+    <div class="tweet__inner">
+      <SideBar></SideBar>
+      <div class="tweet__show">
+        <h2>ホーム</h2>
+      </div>
+    </div>
+  </div>
+</template>
+
+<style>
+.tweet__inner {
+  display: flex;
+  width: １００ｖ
+}
+h2 {
+  width: 100%;
+  padding: 20px;
+  border: solid 1px #fff;
+}
+</style>
