@@ -9,17 +9,17 @@
         <br />
         <validation-observer ref="obs" v-slot="ObserverProps">
           <validation-provider v-slot="{ errors }" rules="required|max:20">
-            <input v-model="name" type="name" name="ユーザーネーム" required placeholder="ユーザーネーム" />
+            <input v-model="name" v-modl="dbname" type="name" name="ユーザーネーム" required placeholder="ユーザーネーム" />
             <div class="error">{{ errors[0] }}</div>
           </validation-provider>
           <br />
           <validation-provider v-slot="{ errors }" rules="required|email">
-            <input v-model="email" type="email" name="メールアドレス" required placeholder="メールアドレス" />
+            <input v-model="email" v-modal="dbemail" type="email" name="メールアドレス" required placeholder="メールアドレス" />
             <div class="error">{{ errors[0] }}</div>
           </validation-provider>
           <br />
           <validation-provider v-slot="{ errors }" vid="passwordConfirm" rules="required|min:6|alpha_dash">
-            <input v-model="password" type="password" name="パスワード" required placeholder="パスワード" />
+            <input v-model="password" v-modal="dbpassword" type="password" name="パスワード" required placeholder="パスワード" />
             <div class="error">{{ errors[0] }}</div>
           </validation-provider>
           <br />
@@ -39,7 +39,10 @@ export default {
       name:null,
       email: null,
       password: null,
-      uid: null,
+      dbname:null,
+      dbemail: null,
+      dbpassword: null,
+
     }
   },
   methods: {
@@ -52,13 +55,9 @@ export default {
         .auth()
         .createUserWithEmailAndPassword(this.email, this.password)
         .then((data) => {
-          data.user.sendEmailVerification()
-        .then((userCredential) => {
-          this.user = userCredential.user;
-        })
-        .then(() => {
-          this.$router.replace('/login')
-        })
+          data.user.sendEmailVerification().then(() => {
+            this.$router.replace('/login')
+          })
         })
         .catch((error) => {
           switch (error.code) {
@@ -76,13 +75,12 @@ export default {
               break
           }
         })
-      },
+    },
     addUser() {
       const newUserData = {
-        name: this.name,
-        email: this.email,
-        password: this.password,
-        uid: this.uid,
+        name: this.dbname,
+        email: this.dbemail,
+        password: this.dbpassword,
       };
       this.$axios.post("http://127.0.0.1:8000/api/v1/user", newUserData);
     },

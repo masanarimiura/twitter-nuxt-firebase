@@ -61,16 +61,16 @@ export default {
         })
     },
   },
-  // async sendUserEmail() {
-  //   const loginUserEmail = {
-  //     email: this.email,
-  //   };
-  //   const resData = await this.$axios.get("http://127.0.0.1:8000/api/user/");
-  //   this.userData = resData.data.data;
-  //   // this.userData の メールアドレスが this.email と一致するデータのみもらって、下のコミットで送りたい
+  async sendUserEmail() {
+    const loginUserEmail = {
+      email: this.email,
+    };
+    const resData = await this.$axios.get("http://127.0.0.1:8000/api/user/");
+    this.userData = resData.data.data;
+    // this.userData の メールアドレスが this.email と一致するデータのみもらって、下のコミットで送りたい
     
-  //   this.$store.commit('sendUserEmail', loginUserEmail);
-  // },
+    this.$store.commit('sendUserEmail', loginUserEmail);
+  },
 }
 </script>
 

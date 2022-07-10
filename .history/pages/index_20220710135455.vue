@@ -39,7 +39,7 @@ export default {
       name:null,
       email: null,
       password: null,
-      uid: null,
+      user: null,
     }
   },
   methods: {
@@ -82,7 +82,7 @@ export default {
         name: this.name,
         email: this.email,
         password: this.password,
-        uid: this.uid,
+        uid
       };
       this.$axios.post("http://127.0.0.1:8000/api/v1/user", newUserData);
     },

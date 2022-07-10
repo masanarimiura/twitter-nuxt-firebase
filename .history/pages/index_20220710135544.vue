@@ -54,7 +54,7 @@ export default {
         .then((data) => {
           data.user.sendEmailVerification()
         .then((userCredential) => {
-          this.user = userCredential.user;
+          this.uid = userCredential.user;
         })
         .then(() => {
           this.$router.replace('/login')

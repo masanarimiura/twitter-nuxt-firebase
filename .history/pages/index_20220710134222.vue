@@ -39,7 +39,6 @@ export default {
       name:null,
       email: null,
       password: null,
-      uid: null,
     }
   },
   methods: {
@@ -54,11 +53,12 @@ export default {
         .then((data) => {
           data.user.sendEmailVerification()
         .then((userCredential) => {
-          this.user = userCredential.user;
+          var user = userCredential.user;
+          console.log(user)
         })
-        .then(() => {
-          this.$router.replace('/login')
-        })
+        then(() => {
+            this.$router.replace('/login')
+          })
         })
         .catch((error) => {
           switch (error.code) {
@@ -75,14 +75,21 @@ export default {
               alert('エラーが起きました。しばらくしてから再度お試しください。')
               break
           }
-        })
+        }),
+        firebase.auth().createUserWithEmailAndPassword(email, password)
+          .then((userCredential) => {
+            var user = userCredential.user;
+            console.log(user)
+          })
+          .catch((error) => {
+            console.error(error)
+          });
       },
     addUser() {
       const newUserData = {
         name: this.name,
         email: this.email,
         password: this.password,
-        uid: this.uid,
       };
       this.$axios.post("http://127.0.0.1:8000/api/v1/user", newUserData);
     },

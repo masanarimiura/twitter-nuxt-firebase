@@ -38,8 +38,7 @@ export default {
     return {
       name:null,
       email: null,
-      password: null,
-      uid: null,
+      password: null
     }
   },
   methods: {
@@ -54,7 +53,7 @@ export default {
         .then((data) => {
           data.user.sendEmailVerification()
         .then((userCredential) => {
-          this.user = userCredential.user;
+          var user = userCredential.user;
         })
         .then(() => {
           this.$router.replace('/login')
@@ -82,7 +81,6 @@ export default {
         name: this.name,
         email: this.email,
         password: this.password,
-        uid: this.uid,
       };
       this.$axios.post("http://127.0.0.1:8000/api/v1/user", newUserData);
     },

@@ -11,7 +11,7 @@
         <br />
         <input v-model="password" type="password" required placeholder="パスワード" />
         <br />
-        <button @click="login()" class="login__btn">ログイン</button>
+        <button @click="login(); sendUserEmail()" class="login__btn">ログイン</button>
       </div>
     </div>
   </div>
@@ -61,16 +61,16 @@ export default {
         })
     },
   },
-  // async sendUserEmail() {
-  //   const loginUserEmail = {
-  //     email: this.email,
-  //   };
-  //   const resData = await this.$axios.get("http://127.0.0.1:8000/api/user/");
-  //   this.userData = resData.data.data;
-  //   // this.userData の メールアドレスが this.email と一致するデータのみもらって、下のコミットで送りたい
+  async sendUserEmail() {
+    const loginUserEmail = {
+      email: this.email,
+    };
+    const resData = await this.$axios.get("http://127.0.0.1:8000/api/user/");
+    this.userData = resData.data.data;
     
-  //   this.$store.commit('sendUserEmail', loginUserEmail);
-  // },
+    
+    this.$store.commit('sendUserEmail', loginUserEmail);
+  },
 }
 </script>
 

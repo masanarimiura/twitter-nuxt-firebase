@@ -31,7 +31,7 @@
   </div>
 </template>
 
-<script>
+ｚ<script>
 import firebase from '~/plugins/firebase'
 export default {
   data() {
@@ -40,7 +40,7 @@ export default {
       email: null,
       password: null,
       uid: null,
-    }
+    
   },
   methods: {
     register() {

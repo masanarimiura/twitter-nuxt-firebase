@@ -39,7 +39,6 @@ export default {
       name:null,
       email: null,
       password: null,
-      uid: null,
     }
   },
   methods: {
@@ -52,13 +51,9 @@ export default {
         .auth()
         .createUserWithEmailAndPassword(this.email, this.password)
         .then((data) => {
-          data.user.sendEmailVerification()
-        .then((userCredential) => {
-          this.user = userCredential.user;
-        })
-        .then(() => {
-          this.$router.replace('/login')
-        })
+          data.user.sendEmailVerification().then(() => {
+            this.$router.replace('/login')
+          })
         })
         .catch((error) => {
           switch (error.code) {
@@ -75,14 +70,14 @@ export default {
               alert('エラーが起きました。しばらくしてから再度お試しください。')
               break
           }
-        })
-      },
+        }),
+        
+    },
     addUser() {
       const newUserData = {
         name: this.name,
         email: this.email,
         password: this.password,
-        uid: this.uid,
       };
       this.$axios.post("http://127.0.0.1:8000/api/v1/user", newUserData);
     },

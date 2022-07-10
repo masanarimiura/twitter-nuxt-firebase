@@ -39,7 +39,7 @@ export default {
       name:null,
       email: null,
       password: null,
-      uid: null,
+      user: null,
     }
   },
   methods: {
