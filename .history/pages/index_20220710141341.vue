@@ -7,6 +7,7 @@
       <div class="register__box">
         <p>新規登録</p>
         <br />
+        <form action="">
         <validation-observer ref="obs" v-slot="ObserverProps">
           <validation-provider v-slot="{ errors }" rules="required|max:20">
             <input v-model="name" type="name" name="ユーザーネーム" required placeholder="ユーザーネーム" />
@@ -23,9 +24,9 @@
             <div class="error">{{ errors[0] }}</div>
           </validation-provider>
           <br />
-          <button @click="register()" class="register__btn"
+          <button @click="register(); addUser() " class="register__btn"
             :disabled="ObserverProps.invalid || !ObserverProps.validated">新規登録</button>
-        </validation-observer>
+        </validation-observer></form>
       </div>
     </div>
   </div>
@@ -43,16 +44,22 @@ export default {
     }
   },
   methods: {
-    async register() {
+    register() {
       if (!this.email || !this.password) {
         alert('メールアドレスまたはパスワードが入力されていません。')
         return
       }
-      await firebase
+      firebase
         .auth()
         .createUserWithEmailAndPassword(this.email, this.password)
         .then((data) => {
-          this.uid = data.user.uid;
+          data.user.sendEmailVerification()
+        .then((userCredential) => {
+          this.user = userCredential.user;
+        })
+        .then(() => {
+          this.$router.replace('/login')
+        })
         })
         .catch((error) => {
           switch (error.code) {
@@ -70,6 +77,8 @@ export default {
               break
           }
         })
+      },
+    addUser() {
       const newUserData = {
         name: this.name,
         email: this.email,
@@ -77,7 +86,6 @@ export default {
         uid: this.uid,
       };
       this.$axios.post("http://127.0.0.1:8000/api/v1/user", newUserData);
-      this.$router.replace('/login');
     },
   },
 }

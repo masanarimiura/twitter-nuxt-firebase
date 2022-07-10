@@ -3,7 +3,7 @@ export const state = () => ({
 });
 
 export const mutations = {
-  sendLoginUserId(state,receiveUserId) {
+  sendLoginUser(state,receiveUserId) {
     state.loginUserId = receiveUserId;
   }
 };

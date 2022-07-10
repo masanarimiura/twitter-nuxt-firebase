@@ -56,15 +56,17 @@ export default {
               alert('パスワードが間違っております。')
               break
             default:
-              alert('エラーが起きました。しばらくしてから再度お試しください。')
+              alert('エラーが起きましばらくしてから再度お試しください。')
               break
           }
         })
     const loginUid = {
       uid: this.uid,
     };
-    const resData = await this.$axios.get("http://127.0.0.1:8000/api/v1/user/"+ uid);
-    this.loginUserId = resData.data.data;
+    const resData = awaot this.$axios.get(
+        "http://127.0.0.1:8000/api/contact/"
+      );
+      this.contactLists = resData.data.data;
     this.$store.commit('sendLoginUserId', loginUserId);
     this.$router.push('/tweet');
     },

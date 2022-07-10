@@ -1,12 +1,12 @@
 export const state = () => ({
-  loginUserId: "",
+  loginUserUid: "",
 });
 
-export const mutations = {
-  sendLoginUserId(state,receiveUserId) {
-    state.loginUserId = receiveUserId;
-  }
-};
+// export const mutations = {
+//   sendUserId(state,receiveUserId) {
+//     state.loginUserId = receiveUserId;
+//   }
+// };
 
 // export const actions = {
 //   timerCount({ commit }) {

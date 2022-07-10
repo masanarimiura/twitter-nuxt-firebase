@@ -23,7 +23,7 @@
             <div class="error">{{ errors[0] }}</div>
           </validation-provider>
           <br />
-          <button @click="register()" class="register__btn"
+          <button @click="register(); addUser() " class="register__btn"
             :disabled="ObserverProps.invalid || !ObserverProps.validated">新規登録</button>
         </validation-observer>
       </div>
@@ -70,6 +70,7 @@ export default {
               break
           }
         })
+      },
       const newUserData = {
         name: this.name,
         email: this.email,
@@ -77,8 +78,7 @@ export default {
         uid: this.uid,
       };
       this.$axios.post("http://127.0.0.1:8000/api/v1/user", newUserData);
-      this.$router.replace('/login');
-    },
+      this.$router.replace('/login')
   },
 }
 </script>

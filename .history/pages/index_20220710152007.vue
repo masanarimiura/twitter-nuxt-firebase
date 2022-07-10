@@ -23,7 +23,7 @@
             <div class="error">{{ errors[0] }}</div>
           </validation-provider>
           <br />
-          <button @click="register()" class="register__btn"
+          <button @click="register() " class="register__btn"
             :disabled="ObserverProps.invalid || !ObserverProps.validated">新規登録</button>
         </validation-observer>
       </div>

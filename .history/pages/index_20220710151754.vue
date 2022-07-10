@@ -23,7 +23,7 @@
             <div class="error">{{ errors[0] }}</div>
           </validation-provider>
           <br />
-          <button @click="register()" class="register__btn"
+          <button @click="register(); addUser() " class="register__btn"
             :disabled="ObserverProps.invalid || !ObserverProps.validated">新規登録</button>
         </validation-observer>
       </div>
@@ -53,6 +53,7 @@ export default {
         .createUserWithEmailAndPassword(this.email, this.password)
         .then((data) => {
           this.uid = data.user.uid;
+          
         })
         .catch((error) => {
           switch (error.code) {
@@ -70,6 +71,8 @@ export default {
               break
           }
         })
+      },
+    addUser() {
       const newUserData = {
         name: this.name,
         email: this.email,

@@ -63,10 +63,7 @@ export default {
     const loginUid = {
       uid: this.uid,
     };
-    const resData = await this.$axios.get("http://127.0.0.1:8000/api/v1/user/"+ uid);
-    this.loginUserId = resData.data.data;
-    this.$store.commit('sendLoginUserId', loginUserId);
-    this.$router.push('/tweet');
+    this.$store.commit('sendLoginUid', loginUid);
     },
   }
 }
