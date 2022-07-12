@@ -15,7 +15,7 @@ export default {
       id:"",
     };
   },
-  created() {
+  mounted() {
     const searchUid = this.$store.state.loginUid
     console.log(searchUid)
     this.$axios

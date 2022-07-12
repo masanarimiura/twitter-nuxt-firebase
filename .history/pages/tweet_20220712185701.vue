@@ -16,10 +16,10 @@ export default {
     };
   },
   created() {
-    const searchUid = this.$store.state.loginUid
-    console.log(searchUid)
-    this.$axios
-      .get("http://127.0.0.1:8000/api/v1/user", { params: { searchUid } })
+    // const searchUid = this.$store.loginUid
+    // console.log(searchUid)
+    const this.$axios
+      .get("http://127.0.0.1:8000/api/v1/user", { params: { uid : dOxM9MJIUAd6iMjXkMjN1YOeQ043 } })
       .then((data) => {
         this.id = data.id;
         const userId = {
