@@ -17,7 +17,7 @@ export default {
   },
   created() {
     const searchUid = {
-      uid : this.$store.state.loginUid
+      this.$store.state.loginUid;
     }
     console.log(searchUid)
     this.$axios
