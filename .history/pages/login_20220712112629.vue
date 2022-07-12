@@ -58,15 +58,15 @@ export default {
             default:
               alert('エラーが起きました。しばらくしてから再度お試しください。')
               break
-          }
-        })
       const loginUid = {
         uid: this.uid,
       };
+          }
+        })
       console.log(loginUid);
       const resData = await this.$axios.get("http://127.0.0.1:8000/api/v1/user/", loginUid)
       console.log(resData);
-      // const loginUserData = resData;
+      // const loginUserData = resData.data.data;
       // this.$store.commit('sendLoginUserData', loginUserData);
       // this.$router.push('/tweet');
     },

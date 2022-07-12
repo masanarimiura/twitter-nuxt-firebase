@@ -39,7 +39,7 @@ export default {
         .signInWithEmailAndPassword(this.email, this.password)
         .then((data) => {
           this.uid = data.user.uid;
-          alert('ログインが完了しました');
+          alert('ログインが完了しました')
         })
         .catch((error) => {
           switch (error.code) {
@@ -60,15 +60,13 @@ export default {
               break
           }
         })
-      const loginUid = {
-        uid: this.uid,
-      };
-      console.log(loginUid);
-      const resData = await this.$axios.get("http://127.0.0.1:8000/api/v1/user/", loginUid)
-      console.log(resData);
-      // const loginUserData = resData;
-      // this.$store.commit('sendLoginUserData', loginUserData);
-      // this.$router.push('/tweet');
+    const loginUid = {
+      uid: this.uid,
+    };
+      const resData = await this.$axios.get("http://127.0.0.1:8000/api/v1/user/", loginUid);
+    this.loginUserData = resData.data.data;
+    this.$store.commit('sendLoginUserData', loginUserData);
+    // this.$router.push('/tweet');
     },
   }
 }
