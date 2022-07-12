@@ -43,6 +43,7 @@ export default {
           const sendUid = {
             uid: this.uid,
           };
+          console.log(sendUid)
           this.$store.commit('sendLoginUid', sendUid);
           this.$router.push('/tweet');
         })

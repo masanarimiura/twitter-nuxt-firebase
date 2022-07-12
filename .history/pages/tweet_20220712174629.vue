@@ -9,18 +9,32 @@
 </template>
 
 <script>
+import firebase from '~/plugins/firebase'
 export default {
   data() {
     return {
       loginUserId: {},
-      id:"",
+      id: "",
+      
     };
   },
   created() {
+    firebase
+      .auth()
+      .onAuthStateChanged()
+      .then((data) => {
+        this.uid = data.user.uid;
+        const sendUid = {
+          uid: this.uid,
+        };
+        console.log(sendUid)
+        this.$store.commit('sendLoginUid', sendUid);
+        this.$router.push('/tweet');
+      })
     const searchUid = this.$store.loginUid
     console.log(searchUid)
     this.$axios
-      .get("http://127.0.0.1:8000/api/v1/user", { params: { searchUid } })
+      .get("/api/v1/user", { params: { searchUid } })
       .then((data) => {
         this.id = data.id;
         const userId = {
