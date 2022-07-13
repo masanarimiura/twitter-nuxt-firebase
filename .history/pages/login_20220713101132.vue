@@ -39,6 +39,10 @@ export default {
         .signInWithEmailAndPassword(this.email, this.password)
         .then(() => {
           alert('ログインが完了しました');
+          // const sendUid = {
+          //   uid:this.uid,
+          // };
+          // this.$store.commit('sendLoginUid', sendUid);
           this.$router.push('/tweet');
         })
         .catch((error) => {

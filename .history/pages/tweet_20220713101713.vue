@@ -13,8 +13,7 @@ import firebase from '~/plugins/firebase'
 export default {
   data() {
     return {
-      uid: null,
-      id: null,
+      uid: null ,
     };
   },
   created() {
@@ -25,13 +24,12 @@ export default {
     };
     console.log(searchUid)
     this.$axios
-      .get("http://127.0.0.1:8000/api/v1/user", searchUid )
+      .get("http://127.0.0.1:8000/api/v1/user", { params{ searchUid } })
       .then((data) => {
         this.id = data.id;
         const userId = {
           id: this.id
         };
-        console.log(data)
         this.$store.commit('sendLoginUserId', userId);
         console.log(this.$store.state.loginUserId)
       })

@@ -14,7 +14,7 @@ export default {
   data() {
     return {
       uid: null,
-      id: null,
+      id: ,
     };
   },
   created() {

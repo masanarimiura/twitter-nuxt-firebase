@@ -14,7 +14,7 @@ export default {
   data() {
     return {
       uid: null,
-      id: null,
+      id:null
     };
   },
   created() {
@@ -25,7 +25,7 @@ export default {
     };
     console.log(searchUid)
     this.$axios
-      .get("http://127.0.0.1:8000/api/v1/user", searchUid )
+      .get("/api/v1/user", { params :{ searchUid } })
       .then((data) => {
         this.id = data.id;
         const userId = {

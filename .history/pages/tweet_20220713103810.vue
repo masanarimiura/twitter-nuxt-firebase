@@ -13,8 +13,7 @@ import firebase from '~/plugins/firebase'
 export default {
   data() {
     return {
-      uid: null,
-      id: null,
+      uid: null ,
     };
   },
   created() {
@@ -24,9 +23,9 @@ export default {
       uid: userUid,
     };
     console.log(searchUid)
-    this.$axios
-      .get("http://127.0.0.1:8000/api/v1/user", searchUid )
-      .then((data) => {
+    const resData = axios
+      .get("/api/v1/user", { params: { searchUid } })
+      .then((res) => {
         this.id = data.id;
         const userId = {
           id: this.id
