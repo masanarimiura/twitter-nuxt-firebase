@@ -37,14 +37,10 @@ export default {
       const resTweet = await this.$axios.get("http://127.0.0.1:8000/api/v1/tweet");
       this.showTweets = resTweet.data.data;
     },
-    async getLikes(idNum) {
-      const tweetId = {
-        tweet_id: idNum ,
-      }
-      const resLike = await this.$axios.get("http://127.0.0.1:8000/api/v1/like", { params: tweetId });
+    async getLikes() {
+      const resLike = await this.$axios.get("http://127.0.0.1:8000/api/v1/like");
       console.log(resLike)
-      const count = resLike.data.count;
-      console.log(count)
+      this.count = resLike.data.count;
       // this.showTweets = resTweet.data.data;
     },
     async onLikeBtn(tweetId) {

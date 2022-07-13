@@ -20,40 +20,31 @@ export default {
     return {
       // ここのuser_idとtweet_idがない
       showTweets: {},
-      user_id: "",
-      tweet_id: "",
 
-      count:"",
+      user_id: "",
+      tweet_id:"",
       
-      // showLikes:{},
-      // loginUserId: "",
-      // tweetId:"",
-      // tweetContent:"",
-      // tweetUserName: "",
+      showLikes:{},
+      loginUserId: "",
+      tweetId:"",
+      tweetContent:"",
+      tweetUserName: "",
     };
   },
+  async created() {
+    const resTweet = await this.$axios.get("http://127.0.0.1:8000/api/v1/tweet");
+    this.showTweets = resTweet.data.data;
+    console.log(resTweet.data.data)
+  },
   methods: {
-    async getTweets() {
-      const resTweet = await this.$axios.get("http://127.0.0.1:8000/api/v1/tweet");
-      this.showTweets = resTweet.data.data;
-    },
-    async getLikes(idNum) {
-      const tweetId = {
-        tweet_id: idNum ,
-      }
-      const resLike = await this.$axios.get("http://127.0.0.1:8000/api/v1/like", { params: tweetId });
-      console.log(resLike)
-      const count = resLike.data.count;
-      console.log(count)
-      // this.showTweets = resTweet.data.data;
-    },
     async onLikeBtn(tweetId) {
       const sendLikeData = {
         user_id: this.$store.state.loginUserId, 
         tweet_id: tweetId
       }
-      const resData = await this.$axios.post("http://127.0.0.1:8000/api/v1/like", sendLikeData);
+      const resData = await this.$axios.post("http://127.0.0.1:8000/api/v1/like");
       location.reload();
+      // this.showLikes = resData.data.data;
     },
     // async insertLike() {
     //   const sendData = {
@@ -77,10 +68,6 @@ export default {
     // toComment(id) {
     //   this.$router.push("comment/" + id);
     // }
-  },
-  created() {
-    this.getTweets()
-    this.getLikes()
   }
 };
 </script>

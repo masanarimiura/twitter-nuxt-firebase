@@ -23,6 +23,7 @@ export const actions = {
     firebase.auth()
       .signInWithEmailAndPassword(email, password)
       .then((result) => {
+      console.log(result)
       const user = result.user
       commit('loginStateChange', true)
       commit('setUserUid', user.uid)

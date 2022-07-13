@@ -23,8 +23,10 @@ export const actions = {
     firebase.auth()
       .signInWithEmailAndPassword(email, password)
       .then((result) => {
+      console.log(result)
       const user = result.user
       commit('loginStateChange', true)
+      console.log('Login was successful')
       commit('setUserUid', user.uid)
       // commit('setUserName', user.displayName)
       this.$router.push('/tweet')

@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import { send } from 'q';
 import firebase from '~/plugins/firebase'
 export default {
   data() {
@@ -38,7 +39,8 @@ export default {
         user_id: this.$store.state.loginUserId,
         content: this.newTweet,
       };
-      await this.$axios.post("http://127.0.0.1:8000/api/v1/tweet", sendTweet);
+      console.log(sendTweet)
+       this.$axios.post("http://127.0.0.1:8000/api/v1/tweet", sendTweet);
       location.reload();
     },
   }

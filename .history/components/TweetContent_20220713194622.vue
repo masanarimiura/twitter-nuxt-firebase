@@ -48,7 +48,7 @@ export default {
       // this.showTweets = resTweet.data.data;
     },
     async onLikeBtn(tweetId) {
-      const sendLikeData = {
+      const sendLikeData = 
         user_id: this.$store.state.loginUserId, 
         tweet_id: tweetId
       }

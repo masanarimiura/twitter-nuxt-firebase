@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import { send } from 'q';
 import firebase from '~/plugins/firebase'
 export default {
   data() {
