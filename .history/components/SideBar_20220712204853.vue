@@ -38,7 +38,7 @@ export default {
         user_id: this.$store.state.loginUserId,
         content: this.newTweet,
       };
-      await this.$axios.post("http://127.0.0.1:8000/api/tweet/", sendTweet);
+      await this.$axios.post("http://127.0.0.1:8000/api/tweet/", sendData);
       this.getTweet();
     },
   }

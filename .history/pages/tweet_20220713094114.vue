@@ -1,9 +1,9 @@
 <template>
     <div class="tweet">
-      <!-- <SideBar></SideBar> -->
+      <SideBar></SideBar>
       <div class="tweet__ttl">
         <h2>ホーム</h2>
-        <!-- <TweetContent></TweetContent> -->
+        <TweetContent></TweetContent>
       </div>
     </div>
 </template>
@@ -11,11 +11,11 @@
 <script>
 import firebase from '~/plugins/firebase'
 export default {
-//   data() {
-//     return {
-//       id:"",
-//     };
-//   },
+  data() {
+    return {
+      id:"",
+    };
+  },
   created() {
     const userData = firebase.auth().currentUser;
     console.log(userData)

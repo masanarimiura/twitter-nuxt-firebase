@@ -40,10 +40,10 @@ export default {
         .then((data) => {
           // this.uid = data.user.uid;
           alert('ログインが完了しました');
-          // const sendUid = {
-          //   uid:this.uid,
-          // };
-          // this.$store.commit('sendLoginUid', sendUid);
+          const sendUid = {
+            uid:this.uid,
+          };
+          this.$store.commit('sendLoginUid', sendUid);
           this.$router.push('/tweet');
         })
         .catch((error) => {

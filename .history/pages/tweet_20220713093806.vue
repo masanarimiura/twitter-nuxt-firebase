@@ -1,0 +1,58 @@
+<template>
+    <div class="tweet">
+      <SideBar></SideBar>
+      <div class="tweet__ttl">
+        <h2>ホーム</h2>
+        <TweetContent></TweetContent>
+      </div>
+    </div>
+</template>
+
+<script>
+import firebase from '~/plugins/firebase'
+export default {
+  data() {
+    return {
+      id:"",
+    };
+  },
+  created() {
+    const user = firebase.auth().currentUser;
+    if (user) {
+      // User is signed in, see docs for a list of available properties
+      // https://firebase.google.com/docs/reference/js/firebase.User
+      // ...
+    } else {
+      // No user is signed in.
+    }
+    const searchUid = {
+      uid : this.$store.state.loginUid
+    }
+    console.log(searchUid)
+    this.$axios
+      .get("http://127.0.0.1:8000/api/v1/user", searchUid)
+      .then((data) => {
+        this.id = data.id;
+        const userId = {
+          id: this.id
+        };
+        this.$store.commit('sendLoginUserId', userId);
+        console.log(this.$store.state.loginUserId)
+      })
+  }
+}
+</script>
+
+<style>
+.tweet {
+  display: flex;
+  width: 100vw
+}
+.tweet__ttl {
+  width: 100%;
+}
+h2 {
+  padding: 20px;
+  border: solid 1px #fff;
+}
+</style>

@@ -1,9 +1,9 @@
 <template>
     <div class="tweet">
-      <!-- <SideBar></SideBar> -->
+      <SideBar></SideBar>
       <div class="tweet__ttl">
         <h2>ホーム</h2>
-        <!-- <TweetContent></TweetContent> -->
+        <TweetContent></TweetContent>
       </div>
     </div>
 </template>

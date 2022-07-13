@@ -10,7 +10,7 @@
         <textarea v-model="newTweet" id="tweet_content" type="text" name="シェア"></textarea>
         <div class="error">{{ errors[0] }}</div>
       </validation-provider>
-      <button type="button" :disabled="ObserverProps.invalid || !ObserverProps.validated" class="tweet__btn" @click="insertTweet()" >送信</button>
+      <button type="button" :disabled="ObserverProps.invalid || !ObserverProps.validated" class="tweet__btn" @click="insertTweet" >送信</button>
     </validation-observer>
   </div>
 </template>
@@ -34,11 +34,11 @@ export default {
         })
     },
     async insertTweet() {
-      const sendTweet = {
-        user_id: this.$store.state.loginUserId,
+      const sendData = {
+        user_id: this.$store.state.loginUid,
         content: this.newTweet,
       };
-      await this.$axios.post("http://127.0.0.1:8000/api/tweet/", sendTweet);
+      await this.$axios.post("http://127.0.0.1:8000/api/tweet/", sendData);
       this.getTweet();
     },
   }
