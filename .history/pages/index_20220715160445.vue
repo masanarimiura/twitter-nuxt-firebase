@@ -1,5 +1,6 @@
 <template>
   <div class="register">
+
     <TopBar></TopBar>
     <div class="register__inner">
       <div class="register__box">
